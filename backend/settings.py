@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ybgw9_9%3^pd-xd8d&7cf5qdttv%0h22dz-vvl$9@j%%jszwr&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver', 'mys-backend-de75ad11f796.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'mys.apps.MysConfig',
     'corsheaders',
+    'spotify.apps.SpotifyConfig',
 ]
 
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,12 +57,38 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_NAME = 'spotify_sessionid'  # Custom name to avoid conflicts
+SESSION_COOKIE_AGE = 86400 * 30  # 30 days in seconds
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+SESSION_COOKIE_SAMESITE = 'Lax'  # or 'None' if needed (requires Secure=True)
+SESSION_COOKIE_HTTPONLY = True
+
+# CORS settings (if not already set)
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3000',
-    'http://localhost:3000',
-    'https://mys-clone.vercel.app'
+    "http://localhost:3000",  # Your React frontend URL
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
 ]
 
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'x-session-id',  # Add this
+]
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [

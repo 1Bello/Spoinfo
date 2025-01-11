@@ -1,0 +1,23 @@
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animated-background {
+    background: linear-gradient(270deg, #bbdaed, #80f2c5, #86a8e7, #3ee6a3);
+    background-size: 800% 800%;
+    animation: gradientAnimation 15s ease infinite;
+    height: 140vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }

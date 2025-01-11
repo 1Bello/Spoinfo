@@ -1,24 +1,24 @@
 from rest_framework import serializers
-from .models import User, Shop, Product, MatchUserProduct
+from .models import User, Song, Album, Playlist
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
-class ShopSerializer(serializers.ModelSerializer):
+class SongSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Shop
+        model = Song
         fields = '__all__'
 
-class ProductSerializer(serializers.ModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
+        model = Album
         fields = '__all__'
 
-class MatchUserProductSerializer(serializers.ModelSerializer):
+class PlaylistSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MatchUserProduct
+        model = Playlist
         fields = '__all__'
 
 class UserSignupSerializer(serializers.ModelSerializer):

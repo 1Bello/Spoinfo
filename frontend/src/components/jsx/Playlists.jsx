@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../PageElements/api';
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
+import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Card, CardContent, CardActions, ImageList, ImageListItem, IconButton, ImageListItemBar } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Grid from '@mui/material/Grid2';
 import '../css/Home.css';
 import '../css/AnimatedBackground.css';
+import '../css/Playlist.css';
+import { Weight } from 'lucide-react';
 
 const Playlists = () => {
   const [loading, setLoading] = useState(true);
@@ -34,6 +37,7 @@ const Playlists = () => {
             }),
           ]);
           setPlaylists(PlaylistsRes.data);
+          console.log(PlaylistsRes.data);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -49,7 +53,32 @@ const Playlists = () => {
 
   return (
     <div className="animated-background">
-
+      <Grid container spacing={1} justifyContent="center" marginTop={12} >
+        <Grid item xs={12} md={6}>
+          <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <CardContent >
+              <Typography variant="h5" component="div" padding={1}>
+                Playlists
+              </Typography>
+            </CardContent>
+            <IconButton onClick={() => navigate('/home')} sx={{ marginRight: 2 }}>
+              <ArrowBackIcon />
+            </IconButton>
+          </Card>
+          <ImageList className='image-list' sx={{ width: 550, height: 450 }} cols={3} rowHeight={164}>
+            {playlists.map((item, index) => (
+              <ImageListItem key={item.id}>
+                <Link to={`/playlists/${index}`} className='image-link'>
+                  <img src={item.images[0]?.url} alt={item.name} />
+                </Link>
+                <ImageListItemBar
+                  title={item.name}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Grid>
+      </Grid>
     </div>
   );
 };

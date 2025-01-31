@@ -1,0 +1,16 @@
+.image-link img {
+    width: 100%;
+    height: 92%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+  }
+  
+  .image-link img:hover {
+    transform: scale(1.04);
+  }
+
+  .image-list {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+  }

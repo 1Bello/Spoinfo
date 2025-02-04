@@ -142,6 +142,37 @@ class UserPlaylists(APIView):
             return Response({'error': 'Failed to fetch playlists'}, status=response.status_code)
 
         return Response(response.json()['items'], status=status.HTTP_200_OK)
+    
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import requests
+
+class PlaylistDetails(APIView):
+    def get(self, request, id, format=None):
+        access_token = request.GET.get('access_token')
+
+        if not access_token or not id:
+            return Response({'error': 'Missing access token or playlist ID'}, status=status.HTTP_400_BAD_REQUEST)
+
+        headers = {'Authorization': f'Bearer {access_token}'}
+        url = f'https://api.spotify.com/v1/playlists/{id}/tracks?limit=100'  # Limit set to 100 (max)
+        
+        all_tracks = []  # Store all tracks here
+
+        while url:
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code != 200:
+                return Response({'error': 'Failed to fetch playlist details'}, status=response.status_code)
+
+            data = response.json()
+            all_tracks.extend(data.get('items', []))  # Add current batch of songs
+
+            url = data.get('next')  # Get the next page URL (if any)
+
+        return Response({'tracks': all_tracks}, status=status.HTTP_200_OK)
+
 
 class UserTopItems(APIView):
     def get(self, request, format=None):

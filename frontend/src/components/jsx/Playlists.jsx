@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../PageElements/api';
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Card, CardContent, CardActions, ImageList, ImageListItem, IconButton, ImageListItemBar } from '@mui/material';
+import {  Typography, Card, CardContent, ImageList, ImageListItem, IconButton, ImageListItemBar, CircularProgress } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Grid from '@mui/material/Grid2';
@@ -49,7 +49,17 @@ const Playlists = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  const handlePlaylistClick = (playlist, index) => {
+    navigate(`/playlists/${index}`, { state: { playlist } });
+  };
+
+  if (loading) {
+    return (
+      <div className="animated-background" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress size={70} color='white' />
+      </div>
+    );
+  }
 
   return (
     <div className="animated-background">
@@ -67,8 +77,8 @@ const Playlists = () => {
           </Card>
           <ImageList className='image-list' sx={{ width: 550, height: 450 }} cols={3} rowHeight={164}>
             {playlists.map((item, index) => (
-              <ImageListItem key={item.id}>
-                <Link to={`/playlists/${index}`} className='image-link'>
+              <ImageListItem key={item.id} className="image-link" onClick={() => handlePlaylistClick(item, index)}>
+                <Link className="image-link">
                   <img src={item.images[0]?.url} alt={item.name} />
                 </Link>
                 <ImageListItemBar

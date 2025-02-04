@@ -1,16 +1,94 @@
+/* Ensure images fit well inside the container */
 .image-link img {
-    width: 100%;
-    height: 92%;
-    object-fit: cover;
-    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
-  }
-  
-  .image-link img:hover {
-    transform: scale(1.04);
-  }
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
 
-  .image-list {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scrollbar-width: none; /* Hides scrollbar for Firefox */
-  }
+/* Scale effect on hover */
+.image-link img:hover {
+  transform: scale(1.04);
+}
+
+/* Hide scrollbar for better UI */
+.image-list {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+.image-list::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Chrome, Safari */
+}
+
+/* Styling for song images */
+.image-song {
+  position: relative;
+}
+
+/* Ensure images take the full space */
+.image-song img {
+  width: 100% !important;
+  height: 90% !important;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.2s ease;
+}
+
+/* Apply blur effect ONLY to the image when hovering */
+.image-song:hover img {
+  filter: blur(5px);
+}
+
+/* Ensure ImageListItemBar doesn't affect blur */
+.image-list-item-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Buttons container */
+.song-buttons {
+  display: flex; /* Keep it flex so the transition works */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Start at scale 0 */
+  opacity: 0; /* Make them invisible */
+  z-index: 2;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.1s ease-out, opacity 0.2s ease-out;
+}
+
+/* Show buttons when hovering over the image */
+.image-song:hover .song-buttons {
+  transform: translate(-50%, -50%) scale(1); /* Grow to normal size */
+  opacity: 1; /* Make them visible */
+}
+
+/* Make buttons circular */
+.song-buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-width: 0;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+}
+
+/* Style images inside buttons */
+.song-buttons button img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  filter: none !important; /* Prevent any blur effect */
+}
+.song-buttons button img {
+  transform: scale(1.2); /* Adjust the scale factor as needed */
+}

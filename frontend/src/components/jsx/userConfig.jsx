@@ -29,10 +29,8 @@ const UserConfig = () => {
   return (
     <div className='animated-background'>
       {auth ? (
-        <div>
-          <h1>Your Spotify Data</h1>
-          
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px'}}>
+        <div>   
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '60px'}}>
             <Grid container spacing={7} justifyContent="center">
               <Grid item xs={6} md={4}>
                 <Accordion

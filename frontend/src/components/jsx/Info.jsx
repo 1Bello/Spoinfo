@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../PageElements/api';
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Card, CardContent, CardActions } from '@mui/material';
+import { Box, Typography, Card, CardContent, CircularProgress } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from '@mui/material/Grid2';
 import '../css/Home.css';
@@ -98,7 +98,13 @@ const Info = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+      return (
+        <div className="animated-background" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <CircularProgress size={70} color='white' />
+        </div>
+      );
+    }
 
   const TopArtists = () => {
     const artists = {};

@@ -10,6 +10,7 @@ import Data from './components/jsx/Data.jsx';
 import Info from './components/jsx/Info.jsx';
 import Playlists from './components/jsx/Playlists.jsx';
 import Games from './components/jsx/Games.jsx';
+import Songs from './components/jsx/Songs.jsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/data" element={<Data/>} />
         <Route path="/info" element={< Info/>} />
         <Route path="/playlists" element={< Playlists/>} />
+        <Route path="/playlists/:id" element={< Songs/>} />
         <Route path="/games" element={< Games/>} />
       </Routes>
       <Navbar />

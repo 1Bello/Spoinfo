@@ -1,1 +1,1 @@
-web: python manage.py runserver 0.0.0.0:$PORT && gunicorn backend.wsgi
+web: python3 manage.py migrate && gunicorn backend.wsgi

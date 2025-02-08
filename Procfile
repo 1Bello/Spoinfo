@@ -1,1 +1,1 @@
-web: python3 manage.py migrate && gunicorn backend.wsgi
+web: /usr/bin/python3 manage.py migrate && gunicorn backend.wsgi

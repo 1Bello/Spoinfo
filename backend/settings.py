@@ -68,7 +68,8 @@ SESSION_COOKIE_HTTPONLY = True
 # CORS settings (if not already set)
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Your React frontend URL
+    "http://localhost:3000",
+    "spoinfo-production.up.railway.app"  # Your React frontend URL
 ]
 CORS_ALLOW_METHODS = [
     'GET',

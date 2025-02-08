@@ -66,6 +66,7 @@ SESSION_COOKIE_SAMESITE = 'Lax'  # or 'None' if needed (requires Secure=True)
 SESSION_COOKIE_HTTPONLY = True
 
 # CORS settings (if not already set)
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

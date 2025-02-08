@@ -94,7 +94,7 @@ def spotify_callback(request, format=None):
         request.session['spotify_authenticated'] = True
         request.session.save()
 
-        return redirect('http://localhost:3000/Data#access_token=' + access_token + '&refresh_token=' + refresh_token + '&expires_in=' + str(expires_in)+ '&session_id=' + session_id)
+        return redirect('https://spoinfo-production.up.railway.app/Data#access_token=' + access_token + '&refresh_token=' + refresh_token + '&expires_in=' + str(expires_in)+ '&session_id=' + session_id)
     
     except Exception as e:
         print("Error updating tokens:", str(e))

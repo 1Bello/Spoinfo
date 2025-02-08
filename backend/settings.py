@@ -69,8 +69,8 @@ SESSION_COOKIE_HTTPONLY = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "spoinfo-production.up.railway.app",
-    "spoinfo-jmus.vercel.app",
+    "http://spoinfo-production.up.railway.app",
+    "http://spoinfo-jmus.vercel.app",
     "https://spoinfo-jmus-cbf5775kx-ignacios-projects-0eb4ef26.vercel.app" 
 ]
 CORS_ALLOW_METHODS = [

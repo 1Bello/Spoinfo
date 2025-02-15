@@ -61,6 +61,11 @@
   transition: transform 0.1s ease-out, opacity 0.2s ease-out;
 }
 
+.song-buttons-list {
+  width: 25px;  /* Smaller icon size */
+  height: 25px; 
+}
+
 /* Show buttons when hovering over the image */
 .image-song:hover .song-buttons {
   transform: translate(-50%, -50%) scale(1); /* Grow to normal size */
@@ -91,4 +96,16 @@
 }
 .song-buttons button img {
   transform: scale(1.2); /* Adjust the scale factor as needed */
+}
+
+.table-container {
+  max-height: 450px;
+  overflow: auto;
+}
+
+.table-header {
+  position: sticky;
+  top: 0;
+  background-color: white; /* Ensure the background color matches the table */
+  z-index: 1; /* Ensure it stays above the table rows */
 }

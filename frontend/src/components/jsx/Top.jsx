@@ -7,13 +7,22 @@ import { Typography } from '@mui/material';
 
 const Top = () => {
   const [url, setUrl] = useState('');
+  const token = localStorage.getItem('spotify_session_id');
+  const navigate = useNavigate();
 
+  const handleLogOut = () => {
+    localStorage.removeItem('spotify_session_id');
+    navigate('/');
+  };
 
   return (
     <div className="top-header">
       <div className="title">SpoInfo</div>
-      <div className="auth-buttons">
-      </div>
+      {token ? (
+        <div className="login-logout-btn">
+          <Typography onClick={handleLogOut} style={{ cursor: 'pointer' }}>Log Out</Typography>
+        </div>
+      ) : null }
     </div>
   );
 }

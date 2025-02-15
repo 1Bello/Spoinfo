@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../PageElements/api';
-import { Box, Typography, Card, CardContent, CircularProgress } from '@mui/material';
+import { Box, Typography, Card, CardContent, CircularProgress, IconButton } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Grid from '@mui/material/Grid2';
 import '../css/Home.css';
 import '../css/AnimatedBackground.css';
@@ -26,6 +27,7 @@ const SpotifyPlayer = ({ songUrls }) => {
       </div>
     );
   };
+  
 
 const Info = () => {
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,17 @@ const Info = () => {
   const [top5Tracks, setTop5Tracks] = useState([]);
   const [topTracks, setTopTracks] = useState([]);
   const [topGenres, setTopGenres] = useState([]);
+  const token = localStorage.getItem('spotify_session_id');
   const navigate = useNavigate();
+
+  useEffect(() => {
+       if (token) {
+        setAuth(true);
+      } else {
+        setAuth(false);
+        navigate('/');
+       }
+    }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -140,7 +152,19 @@ const Info = () => {
 
   return (
     <div className="animated-background">
-      <Grid container spacing={1} justifyContent="center" marginTop={12} >
+      <Grid container spacing={1} justifyContent="center" marginTop={8} >
+        <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <CardContent >
+            <Typography variant="h5" component="div" padding={1}>
+              User Info
+            </Typography>
+          </CardContent>
+          <IconButton onClick={() => navigate('/home')} sx={{ marginRight: 2 }}>
+            <ArrowBackIcon />
+          </IconButton>
+        </Card>
+      </Grid>
+      <Grid container spacing={1} justifyContent="center" marginTop={2} >
         <Grid item xs={12} md={6}>
           <Card sx={{ minWidth: 275 }}>
             <CardContent>

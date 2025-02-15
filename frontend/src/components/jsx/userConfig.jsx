@@ -14,6 +14,7 @@ const UserConfig = () => {
   const [topTracks, setTopTracks] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [albums, setAlbums] = useState([]);
+  const token = localStorage.getItem('spotify_session_id');
   const navigate = useNavigate();
 
 
@@ -25,12 +26,20 @@ const UserConfig = () => {
     setExpanded(false);
   };
 
+  useEffect(() => {
+     if (token) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+      navigate('/');
+     }
+  }, []);
 
   return (
     <div className='animated-background'>
       {auth ? (
         <div>   
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '60px'}}>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '70px'}}>
             <Grid container spacing={7} justifyContent="center">
               <Grid item xs={6} md={4}>
                 <Accordion
